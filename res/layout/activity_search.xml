@@ -39,5 +39,4 @@
         android:numColumns="3" >
     </GridView>
 
-
 </RelativeLayout>

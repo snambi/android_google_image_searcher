@@ -1,5 +1,8 @@
 package com.github.snambi.googleimagesearcher;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +16,9 @@ public class SearchActivity extends Activity {
 	EditText etSearch = null;
 	Button btnSearch = null;
 	GridView gvImages = null;
+	List<Image> images = new ArrayList<Image>();
+	GoogleImageAdapter imageAdapter = null;
+	GoogleImageClient imageClient = null;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,12 @@ public class SearchActivity extends Activity {
         etSearch = (EditText) findViewById(R.id.etImgSearch);
         btnSearch = (Button) findViewById(R.id.btnSearch);
         gvImages = (GridView) findViewById(R.id.gvImages);
+        
+        // create an array adaptor for retrieving images from google and attach it to the "grid view"
+        imageAdapter = new GoogleImageAdapter(this, images);
+        imageClient = new GoogleImageClient( imageAdapter);
+        
+        gvImages.setAdapter(imageAdapter);
     }
     
     public void onClick( View view){
@@ -33,5 +45,18 @@ public class SearchActivity extends Activity {
     	}
     	
     	Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+    	
+    	imageClient.clear();
+    	
+    	// get the search term
+    	String search = etSearch.getText().toString();
+    	if( search != null && !search.trim().equals("") ){
+    		imageClient.setQueryString(search.trim());
+    	}else{
+    		imageClient.setQueryString("tigers");
+    	}
+
+    	// makes call to google, creates the list, notifies the adapter
+    	imageClient.loadImages();
     }
 }
