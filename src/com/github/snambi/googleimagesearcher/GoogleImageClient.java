@@ -147,5 +147,6 @@ public class GoogleImageClient {
 	// clear any pre-loaded images and state information
 	public void clear() {
 		images.clear();
+		currentPage = 0;
 	}
 }
