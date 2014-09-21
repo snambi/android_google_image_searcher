@@ -32,7 +32,7 @@ public class SearchActivity extends Activity {
         
         // create an array adaptor for retrieving images from google and attach it to the "grid view"
         imageAdapter = new GoogleImageAdapter(this, images);
-        imageClient = new GoogleImageClient( imageAdapter);
+        imageClient = new GoogleImageClient( imageAdapter, images);
         
         gvImages.setAdapter(imageAdapter);
     }

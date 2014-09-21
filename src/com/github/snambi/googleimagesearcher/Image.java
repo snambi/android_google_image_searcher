@@ -23,7 +23,7 @@ public class Image {
 	private int height;
 	private String id;
 	private String unescapedUrl;
-	private String escapedUrl;
+	private String url;
 	private String visibleUrl;
 	
 	private String title;
@@ -61,11 +61,11 @@ public class Image {
 	public void setUnescapedUrl(String unescapedUrl) {
 		this.unescapedUrl = unescapedUrl;
 	}
-	public String getEscapedUrl() {
-		return escapedUrl;
+	public String getUrl() {
+		return url;
 	}
-	public void setEscapedUrl(String escapedUrl) {
-		this.escapedUrl = escapedUrl;
+	public void setUrl(String escapedUrl) {
+		this.url = escapedUrl;
 	}
 	public String getVisibleUrl() {
 		return visibleUrl;
@@ -115,5 +115,4 @@ public class Image {
 	public void setThumbUrl(String thumbUrl) {
 		this.thumbUrl = thumbUrl;
 	}
-
 }

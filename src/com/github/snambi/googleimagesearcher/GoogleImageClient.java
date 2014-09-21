@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -15,6 +19,9 @@ public class GoogleImageClient {
 	
 	// Image Adapter
 	private GoogleImageAdapter imageAdapter = null;
+
+	// result of the query
+	private List<Image> images = null;
 	
 	// mandatory field
 	private String queryString ="tigers";
@@ -25,13 +32,12 @@ public class GoogleImageClient {
 	private String size=null;
 	private String site=null;
 	
-	// result of the query
-	private List<Image> images = new ArrayList<Image>();
 	
 	// store pagination details
 	
-	public GoogleImageClient( GoogleImageAdapter imageAdapter ){
+	public GoogleImageClient( GoogleImageAdapter imageAdapter, List<Image> images ){
 		this.imageAdapter = imageAdapter;
+		this.images = images;
 	}
 	
 	public String getQueryString() {
@@ -44,6 +50,9 @@ public class GoogleImageClient {
 
 	public List<Image> getImages(){
 		return images;
+	}
+	public GoogleImageAdapter getImageAdapter(){
+		return imageAdapter;
 	}
 
 	public String getColor() {
@@ -94,14 +103,34 @@ public class GoogleImageClient {
 			}
 
 			@Override
-			public void onSuccess(int statusCode, Header[] headers,
-					JSONObject response) {
+			public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+				
 				// parse the results
-				
-				// create image object
-				
-				// notify the Adapter
-				imageAdapter.notifyDataSetChanged();
+				if( response != null && response.has("responseData") ){
+					
+					try {
+						
+						JSONObject responseDataJson = response.getJSONObject("responseData");
+					
+						if( responseDataJson.has("results")){
+							JSONArray resultsJSON = responseDataJson.getJSONArray("results");
+							
+							// parse and create image object
+							for( int i=0; i<resultsJSON.length() ; i++ ){
+								JSONObject resultJson = resultsJSON.getJSONObject(i);
+								Image image = ImageUtil.convertJsonToImage(resultJson);
+								getImages().add(image);
+							}
+							
+							// notify the Adapter
+							getImageAdapter().notifyDataSetChanged();
+						}
+						
+					} catch (JSONException e) {
+						e.printStackTrace();
+						Log.e("ERROR", "Json Error while parsing goodle output", e);
+					}
+				}
 			}
 			
 		});
@@ -109,7 +138,6 @@ public class GoogleImageClient {
 
 	// clear any pre-loaded images and state information
 	public void clear() {
-		queryString = null;
 		images.clear();
 	}
 }
