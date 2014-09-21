@@ -1,6 +1,5 @@
 package com.github.snambi.googleimagesearcher;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
@@ -34,6 +33,7 @@ public class GoogleImageClient {
 	
 	
 	// store pagination details
+	private int currentPage = 0;
 	
 	public GoogleImageClient( GoogleImageAdapter imageAdapter, List<Image> images ){
 		this.imageAdapter = imageAdapter;
@@ -92,7 +92,7 @@ public class GoogleImageClient {
 		
 		AsyncHttpClient httpClient = new AsyncHttpClient();
 		
-		String restUrl = REST_API + "&q=" + queryString;
+		String restUrl = REST_API + "&q=" + queryString + "&start=" + currentPage;
 		 
 		httpClient.get( restUrl , new JsonHttpResponseHandler(){
 
@@ -122,8 +122,16 @@ public class GoogleImageClient {
 								getImages().add(image);
 							}
 							
+							// increment the page 
+							currentPage = currentPage + 4;
+							
 							// notify the Adapter
 							getImageAdapter().notifyDataSetChanged();
+							
+							// if less images are available, load again.
+							if( getImages().size() <= 15 ){
+								loadImages();
+							}
 						}
 						
 					} catch (JSONException e) {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +36,15 @@ public class SearchActivity extends Activity {
         imageClient = new GoogleImageClient( imageAdapter, images);
         
         gvImages.setAdapter(imageAdapter);
+        gvImages.setOnScrollListener( new EndlessScrollListener(){
+
+			@Override
+			public void onLoadMore(int page, int totalItemsCount) {
+				Log.i("INFO", "load the next page. page=" + page + ", totalItems=" + totalItemsCount);	
+				imageClient.loadImages();
+			}
+        	
+        } );
     }
     
     public void onClick( View view){
