@@ -86,14 +86,43 @@ public class GoogleImageClient {
 	public void setSite(String site) {
 		this.site = site;
 	}
+	
+	public String getRestUrl(){
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append( REST_API );
+		sb.append("&q=");
+		sb.append( queryString );
+		sb.append("&start=");
+		sb.append(currentPage);
+		if( getSize() != null && !getSize().trim().equals("") ){
+			sb.append("&imgsz=");
+			sb.append( getSize());
+		}
+		if( getType() != null && !getType().trim().equals("") ){
+			sb.append("&imgtype=");
+			sb.append( getType() );
+		}
+		if( getColor() != null && !getColor().trim().equals("") ){
+			sb.append("&imgcolor=");
+			sb.append( getColor()); 
+		}
+		if( getSite() != null  && !getSite().trim().equals("") ){
+			sb.append("&as_sitesearch=");
+			sb.append( getSite() );
+		}
+		
+		return sb.toString();
+	}
 
 	// make an API call and load images from the rest API
 	public void loadImages() {
 		
 		AsyncHttpClient httpClient = new AsyncHttpClient();
 		
-		String restUrl = REST_API + "&q=" + queryString + "&start=" + currentPage;
-		 
+		//String restUrl = REST_API + "&q=" + queryString + "&start=" + currentPage;
+		String restUrl = getRestUrl();
+		
 		httpClient.get( restUrl , new JsonHttpResponseHandler(){
 
 			@Override

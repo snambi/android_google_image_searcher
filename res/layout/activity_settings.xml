@@ -113,8 +113,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:text="@string/btn_settings_save" >
-        
+        android:text="@string/btn_settings_save"
+        android:onClick="onClick" >
     </Button>
     
 </RelativeLayout>

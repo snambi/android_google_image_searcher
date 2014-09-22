@@ -75,6 +75,37 @@ public class SearchActivity extends Activity {
     	return result;
     }
     
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	
+    	String imageType=null;
+    	String imageSize=null;
+    	String colorFilter=null;
+    	String site=null;
+    	
+    	if(resultCode == RESULT_OK && requestCode == 100){
+    		
+    		imageType = data.getStringExtra("IMAGE_FILTER");
+    		imageSize = data.getStringExtra("IMAGE_SIZE");
+    		colorFilter = data.getStringExtra("COLOR_FILTER");
+    		site = data.getStringExtra("SITE");
+    		
+    		// set the above in the imageClient
+    		imageClient.setColor(colorFilter);
+    		imageClient.setSize(imageSize);
+    		imageClient.setType(imageType);
+    		imageClient.setSite(site);
+    	}
+    	if( requestCode == RESULT_CANCELED && requestCode == 100){
+    		// no actions necessary
+    	}
+    }
+    
+    @Override
+    public void finishActivity(int requestCode) {
+    	
+    }
+    
     public void onClick( View view){
     	
     	// remove focus on the EditText
