@@ -37,6 +37,7 @@ public class GoogleImageAdapter extends ArrayAdapter<Image>{
 		}
 		
 		holder.imgGridItem.getLayoutParams().width = parent.getWidth();
+		//holder.imgGridItem.getLayoutParams().height = (parent.getHeight() - holder.tvGridItem.getLayoutParams().height);
 		
 		holder.imgGridItem.setImageResource(0);
 				
@@ -48,7 +49,6 @@ public class GoogleImageAdapter extends ArrayAdapter<Image>{
 		//Picasso.with( getContext() ).load( photo.getImageUrl() ).fit().centerInside().into(holder.imgPhoto);
 		Picasso.with(getContext())
 				.load( image.getThumbUrl())
-//				.centerInside()
 //				.fit()
 //				.noFade()
 				.into(holder.imgGridItem);

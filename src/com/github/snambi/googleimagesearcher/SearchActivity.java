@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +49,30 @@ public class SearchActivity extends Activity {
 			}
         	
         } );
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	getMenuInflater().inflate(R.menu.settings_menu, menu);
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    
+    	boolean result = false;
+    	
+    	switch( item.getItemId() ){
+    	case R.id.item1 :
+    		Intent intent = new Intent( this, SettingsActivity.class);
+    		startActivityForResult(intent, 100);
+    		result =true;
+    		break;
+    	default:
+    		break;
+    	}
+    	
+    	return result;
     }
     
     public void onClick( View view){
