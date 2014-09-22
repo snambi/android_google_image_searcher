@@ -21,7 +21,9 @@
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_launcher" >
+        android:src="@drawable/ic_launcher"
+        android:onClick="onClickShowFullImage"
+         >
 
     </ImageView>
     

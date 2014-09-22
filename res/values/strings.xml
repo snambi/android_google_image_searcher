@@ -12,5 +12,6 @@
     <string name="text_color_filter">Color Filter</string>
     <string name="text_image_type">Image Type</string>
     <string name="btn_settings_save">Save</string>
+    <string name="title_activity_full_screen">FullScreenActivity</string>
 
 </resources>

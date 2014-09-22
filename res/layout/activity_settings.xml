@@ -36,7 +36,7 @@
         android:layout_toRightOf="@+id/tvImageSize"
         android:entries="@array/image_sizes"
         android:spinnerMode="dialog"
-        android:textAlignment="viewEnd" />
+        android:gravity="right"/>
 
     <TextView
         android:id="@+id/tvColorFilter"
@@ -59,7 +59,7 @@
         android:layout_toRightOf="@+id/tvColorFilter"
         android:entries="@array/color_values"
         android:spinnerMode="dialog"
-        android:textAlignment="viewEnd" />
+        android:gravity="right" />
 
     <TextView
         android:id="@+id/tvImageType"
@@ -82,7 +82,7 @@
         android:layout_toRightOf="@+id/tvColorFilter"
         android:entries="@array/image_types"
         android:spinnerMode="dialog"
-        android:textAlignment="viewEnd" />
+        android:gravity="right" />
 
     <TextView
         android:id="@+id/tvSiteFilter"

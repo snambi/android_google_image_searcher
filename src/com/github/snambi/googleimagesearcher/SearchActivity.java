@@ -39,6 +39,7 @@ public class SearchActivity extends Activity {
         imageAdapter = new GoogleImageAdapter(this, images);
         imageClient = new GoogleImageClient( imageAdapter, images);
         
+        
         gvImages.setAdapter(imageAdapter);
         gvImages.setOnScrollListener( new EndlessScrollListener(){
 
@@ -65,6 +66,14 @@ public class SearchActivity extends Activity {
     	switch( item.getItemId() ){
     	case R.id.item1 :
     		Intent intent = new Intent( this, SettingsActivity.class);
+    		// send the settings, if it is already set
+    		if(imageClient.getColor() != null ){
+    			intent.putExtra(SettingsActivity.COLOR, imageClient.getColor());
+    			intent.putExtra(SettingsActivity.SIZE, imageClient.getSize());
+    			intent.putExtra(SettingsActivity.TYPE, imageClient.getType());
+    			intent.putExtra(SettingsActivity.SITE, imageClient.getSite());
+    		}
+    		
     		startActivityForResult(intent, 100);
     		result =true;
     		break;
@@ -85,10 +94,10 @@ public class SearchActivity extends Activity {
     	
     	if(resultCode == RESULT_OK && requestCode == 100){
     		
-    		imageType = data.getStringExtra("IMAGE_FILTER");
-    		imageSize = data.getStringExtra("IMAGE_SIZE");
-    		colorFilter = data.getStringExtra("COLOR_FILTER");
-    		site = data.getStringExtra("SITE");
+    		imageType = data.getStringExtra(SettingsActivity.TYPE);
+    		imageSize = data.getStringExtra( SettingsActivity.SIZE);
+    		colorFilter = data.getStringExtra(SettingsActivity.COLOR);
+    		site = data.getStringExtra( SettingsActivity.SITE);
     		
     		// set the above in the imageClient
     		imageClient.setColor(colorFilter);
@@ -104,6 +113,11 @@ public class SearchActivity extends Activity {
     @Override
     public void finishActivity(int requestCode) {
     	
+    }
+    
+    public void onClickShowFullImage( View view){
+    	Intent intent = new Intent(this, FullScreenActivity.class);
+    	startActivityForResult(intent, 200);
     }
     
     public void onClick( View view){

@@ -28,6 +28,10 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name=".FullScreenActivity"
+            android:label="@string/title_activity_full_screen" >
+        </activity>
     </application>
 
 </manifest>
