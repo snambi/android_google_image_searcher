@@ -7,10 +7,9 @@
     <ImageView
         android:id="@+id/imgGridItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:contentDescription="search image"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_margin="0dp"
         android:layout_marginBottom="0dp"
         android:layout_marginEnd="0dp"
@@ -20,7 +19,7 @@
         android:layout_marginTop="0dp"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
-        android:scaleType="centerInside"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher"
         android:onClick="onClickShowFullImage"
          >
@@ -30,8 +29,9 @@
     <TextView
         android:id="@+id/tvGridItem"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/imgGridItem"
+        android:layout_alignParentBottom="true"
         android:ellipsize="end"
         android:hint="@string/hello_world"
         android:maxLines="1"

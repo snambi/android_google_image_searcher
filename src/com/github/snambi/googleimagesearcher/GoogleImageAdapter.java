@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,11 +48,14 @@ public class GoogleImageAdapter extends ArrayAdapter<Image>{
 		
 		Log.i("INFO", "Loading Image : " + image.getUrl() );
 		
+		
 		//Picasso.with( getContext() ).load( photo.getImageUrl() ).fit().centerInside().into(holder.imgPhoto);
 		Picasso.with(getContext())
 				.load( image.getThumbUrl())
+				.resize( image.getThumbWidth(), image.getThumbHeight())
 //				.fit()
 //				.noFade()
+//				.centerCrop()
 				.into(holder.imgGridItem);
 		
 		//holder.imgGridItem.setImageResource(R.drawable.ic_launcher);
@@ -63,5 +67,7 @@ public class GoogleImageAdapter extends ArrayAdapter<Image>{
 	public static class GoogleViewHolder{
 		ImageView imgGridItem;
 		TextView tvGridItem;
+		int height;
+		int weight;
 	}
 }
