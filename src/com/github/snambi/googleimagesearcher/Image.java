@@ -1,6 +1,9 @@
 package com.github.snambi.googleimagesearcher;
 
-public class Image {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Image implements Parcelable {
 	/*
 	"GsearchResultClass": "GimageSearch",
    "width": "450",
@@ -36,6 +39,8 @@ public class Image {
 	private int thumbWidth;
 	private String thumbUrl;
 	
+	public Image(){
+	}
 	
 	public int getWidth() {
 		return width;
@@ -114,5 +119,63 @@ public class Image {
 	}
 	public void setThumbUrl(String thumbUrl) {
 		this.thumbUrl = thumbUrl;
+	}
+	
+	
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+	
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt( getWidth() );
+		dest.writeInt( getHeight() );
+		dest.writeString( getId() );
+		dest.writeString( getUnescapedUrl());
+		dest.writeString( getUrl() );
+		dest.writeString( getVisibleUrl() );
+		
+		dest.writeString( getTitle() );
+		dest.writeString( getTitleNoFormatting() );
+		dest.writeString( getContent() );
+		dest.writeString( getContentNoFormatting() );
+		
+		dest.writeInt( getThumbHeight() );
+		dest.writeInt( getThumbWidth() );
+		dest.writeString( getThumbUrl() );
+	}
+	
+	public static final Parcelable.Creator<Image> CREATOR = new Parcelable.Creator<Image>() {
+
+		@Override
+		public Image createFromParcel(Parcel source) {
+			return new Image(source);
+		}
+
+		@Override
+		public Image[] newArray(int size) {
+			return new Image[size];
+		}
+		
+	};
+
+	private Image(Parcel in) {
+		
+		setWidth(in.readInt() );
+		setHeight( in.readInt() );
+		setId( in.readString() );
+		setUnescapedUrl( in.readString());
+		setUrl( in.readString() );
+		setVisibleUrl( in.readString() );
+		
+		setTitle( in.readString() );
+		setTitleNoFormatting( in.readString() );
+		setContent( in.readString() );
+		setContentNoFormatting( in.readString() );
+		
+		setThumbHeight( in.readInt() );
+		setThumbWidth( in.readInt() );
+		setThumbUrl( in.readString() );
 	}
 }

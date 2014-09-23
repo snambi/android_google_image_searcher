@@ -43,6 +43,7 @@ public class GoogleImageAdapter extends ArrayAdapter<Image>{
 				
 		// get the appropriate image
 		Image image = getItem(position);
+		holder.imgGridItem.setTag(image);
 		
 		Log.i("INFO", "Loading Image : " + image.getUrl() );
 		

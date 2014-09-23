@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class SearchActivity extends Activity {
@@ -117,6 +118,16 @@ public class SearchActivity extends Activity {
     
     public void onClickShowFullImage( View view){
     	Intent intent = new Intent(this, FullScreenActivity.class);
+    	
+    	if( view instanceof ImageView){
+    		// get the Image details
+    		Image image = (Image )view.getTag();
+    		if( image != null ){
+    			intent.putExtra("IMAGE", image);
+    		}
+    	}
+    	
+    	// get the image that is loaded in the 
     	startActivityForResult(intent, 200);
     }
     
