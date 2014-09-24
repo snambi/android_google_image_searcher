@@ -43,15 +43,15 @@ public class SettingsActivity extends Activity {
 		String site = getIntent().getStringExtra(SITE);
 		
 		//create Adapter
-		ArrayAdapter<CharSequence> colorAdapter = ArrayAdapter.createFromResource(this, R.array.color_values, R.id.tvSpinnerItem);
+		ArrayAdapter<CharSequence> colorAdapter = ArrayAdapter.createFromResource(this, R.array.color_values, R.layout.spinner_text_view);
 		colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		spnColorFilter.setAdapter(colorAdapter);
 		
-		ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this, R.array.image_types, R.id.tvImageType);
+		ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this, R.array.image_types, R.layout.spinner_text_view);
 		typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		spnImageFilter.setAdapter(typeAdapter);
 		
-		ArrayAdapter<CharSequence> sizeAdapter = ArrayAdapter.createFromResource(this, R.array.image_sizes, R.id.tvSpinnerItem);
+		ArrayAdapter<CharSequence> sizeAdapter = ArrayAdapter.createFromResource(this, R.array.image_sizes, R.layout.spinner_text_view);
 		sizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 		spnImageSize.setAdapter(sizeAdapter);
 		
