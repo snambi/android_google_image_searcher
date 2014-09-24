@@ -1,5 +1,6 @@
 package com.github.snambi.googleimagesearcher;
 
+import android.R.anim;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;
@@ -42,9 +43,18 @@ public class SettingsActivity extends Activity {
 		String site = getIntent().getStringExtra(SITE);
 		
 		//create Adapter
-//		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, 
-//															textArrayResId, textViewResId);
-//		
+		ArrayAdapter<CharSequence> colorAdapter = ArrayAdapter.createFromResource(this, R.array.color_values, R.id.tvSpinnerItem);
+		colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spnColorFilter.setAdapter(colorAdapter);
+		
+		ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this, R.array.image_types, R.id.tvImageType);
+		typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spnImageFilter.setAdapter(typeAdapter);
+		
+		ArrayAdapter<CharSequence> sizeAdapter = ArrayAdapter.createFromResource(this, R.array.image_sizes, R.id.tvSpinnerItem);
+		sizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+		spnImageSize.setAdapter(sizeAdapter);
+		
 		// 
 		setSelectedItem(color, spnColorFilter);
 		setSelectedItem(type, spnImageFilter);
