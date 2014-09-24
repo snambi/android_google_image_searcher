@@ -32,8 +32,8 @@ public class FullScreenActivity extends Activity {
 		
 		Picasso.with( this)
 				.load( image.getUrl() )
-				.resize(size.x, size.y)
-				//.fit()
+				//.resize(size.x, size.y)
+				.fit()
 				.centerInside()
 				.into(imgView);
 	}

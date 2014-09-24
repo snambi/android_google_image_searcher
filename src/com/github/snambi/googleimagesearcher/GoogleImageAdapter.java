@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +30,7 @@ public class GoogleImageAdapter extends ArrayAdapter<Image>{
 		GoogleViewHolder holder = null;
 		if( convertView.getTag() == null ){
 			holder = new GoogleViewHolder();
-			holder.imgGridItem = (ImageView) convertView.findViewById(R.id.imgGridItem);
+			holder.imgGridItem = (SquareImage) convertView.findViewById(R.id.imgGridItem);
 			holder.tvGridItem = (TextView) convertView.findViewById(R.id.tvGridItem);
 		}else{
 			holder = (GoogleViewHolder) convertView.getTag();
@@ -65,7 +64,7 @@ public class GoogleImageAdapter extends ArrayAdapter<Image>{
 	}
 	
 	public static class GoogleViewHolder{
-		ImageView imgGridItem;
+		SquareImage imgGridItem;
 		TextView tvGridItem;
 		int height;
 		int weight;

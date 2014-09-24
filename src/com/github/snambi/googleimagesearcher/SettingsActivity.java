@@ -6,6 +6,7 @@ import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -40,6 +41,11 @@ public class SettingsActivity extends Activity {
 		String size = getIntent().getStringExtra(SIZE);
 		String site = getIntent().getStringExtra(SITE);
 		
+		//create Adapter
+//		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, 
+//															textArrayResId, textViewResId);
+//		
+		// 
 		setSelectedItem(color, spnColorFilter);
 		setSelectedItem(type, spnImageFilter);
 		setSelectedItem(size, spnImageSize);
