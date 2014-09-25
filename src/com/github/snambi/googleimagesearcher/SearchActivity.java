@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,13 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 
 public class SearchActivity extends Activity {
 
 	EditText etSearch = null;
 	Button btnSearch = null;
 	GridView gvImages = null;
+	SearchView searchView = null;
 	List<Image> images = new ArrayList<Image>();
 	GoogleImageAdapter imageAdapter = null;
 	GoogleImageClient imageClient = null;
@@ -32,9 +33,10 @@ public class SearchActivity extends Activity {
         setContentView(R.layout.activity_search);
         
         // Assign the references of UI components during startup
-        etSearch = (EditText) findViewById(R.id.etImgSearch);
-        btnSearch = (Button) findViewById(R.id.btnSearch);
+        //etSearch = (EditText) findViewById(R.id.etImgSearch);
+        //btnSearch = (Button) findViewById(R.id.btnSearch);
         gvImages = (GridView) findViewById(R.id.gvImages);
+        
         
         // create an array adaptor for retrieving images from google and attach it to the "grid view"
         imageAdapter = new GoogleImageAdapter(this, images);
@@ -55,8 +57,28 @@ public class SearchActivity extends Activity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+    	
     	getMenuInflater().inflate(R.menu.settings_menu, menu);
-    	return true;
+    	
+    	MenuItem menuitem = menu.findItem(R.id.action_search);
+    	searchView = ( SearchView ) menuitem.getActionView();
+    	
+    	searchView.setOnQueryTextListener( new OnQueryTextListener(){
+
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				performSearch(query);
+				return true;
+			}
+
+			@Override
+			public boolean onQueryTextChange(String newText) {
+				return false;
+			}
+    		
+    	});
+    	
+    	return super.onCreateOptionsMenu(menu);
     }
     
     @Override
@@ -140,17 +162,31 @@ public class SearchActivity extends Activity {
     	
     	//Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
     	
-    	imageClient.clear();
-    	
     	// get the search term
     	String search = etSearch.getText().toString();
+    	
+    	performSearch(search);
+    	
+//    	imageClient.clear();
+//    	
+//    	if( search != null && !search.trim().equals("") ){
+//    		imageClient.setQueryString(search.trim());
+//    	}else{
+//    		imageClient.setQueryString("tigers");
+//    	}
+//
+//    	// makes call to google, creates the list, notifies the adapter
+//    	imageClient.loadImages();
+    }
+    
+    public void performSearch( String search ){
+    	imageClient.clear();
     	if( search != null && !search.trim().equals("") ){
-    		imageClient.setQueryString(search.trim());
+    		imageClient.setQueryString(search);
     	}else{
     		imageClient.setQueryString("tigers");
     	}
-
-    	// makes call to google, creates the list, notifies the adapter
+    
     	imageClient.loadImages();
     }
 }

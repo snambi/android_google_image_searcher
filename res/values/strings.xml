@@ -13,5 +13,6 @@
     <string name="text_image_type">Image Type</string>
     <string name="btn_settings_save">Save</string>
     <string name="title_activity_full_screen">FullScreenActivity</string>
+    <string name="lbl_site">Site</string>
 
 </resources>

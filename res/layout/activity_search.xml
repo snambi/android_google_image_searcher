@@ -5,6 +5,7 @@
     tools:context="${relativePackage}.${activityClass}"
     android:background="#EEEEEE" >
 
+    <!-- 
   	<LinearLayout
   	    android:id="@+id/lyoutTop"
         android:layout_width="fill_parent"
@@ -31,6 +32,7 @@
             android:onClick="onClick" />
   	            
     </LinearLayout>
+     -->
 
     <GridView
         android:id="@+id/gvImages"
