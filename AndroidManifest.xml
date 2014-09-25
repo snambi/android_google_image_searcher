@@ -32,6 +32,9 @@
             android:name=".FullScreenActivity"
             android:label="@string/title_activity_full_screen" >
         </activity>
+        <activity 
+            android:name=".SettingsFragmentActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

@@ -88,7 +88,9 @@ public class SearchActivity extends Activity {
     	
     	switch( item.getItemId() ){
     	case R.id.item1 :
-    		Intent intent = new Intent( this, SettingsActivity.class);
+    		
+    		//Intent intent = new Intent( this, SettingsActivity.class);
+    		Intent intent = new Intent( this, SettingsFragmentActivity.class);
     		// send the settings, if it is already set
     		if(imageClient.getColor() != null ){
     			intent.putExtra(SettingsActivity.COLOR, imageClient.getColor());

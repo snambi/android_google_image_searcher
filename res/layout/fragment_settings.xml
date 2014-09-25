@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:layout_gravity="center"
+    >
+    
+        <TextView
+        android:id="@+id/tvDiagSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/settings_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDiagImageSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/tvDiagSettingsTitle"
+        android:text="@string/text_image_size" />
+
+    <Spinner
+        android:id="@+id/spnDiagImageSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvDiagImageSize"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvDiagSettingsTitle"
+        android:layout_marginLeft="39dp"
+        android:layout_toRightOf="@+id/tvDiagImageSize"
+        android:entries="@array/image_sizes"
+        android:spinnerMode="dialog"
+        android:gravity="right"/>
+
+    <TextView
+        android:id="@+id/tvDiagColorFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvDiagImageSize"
+        android:text="@string/text_color_filter" />
+
+    <Spinner
+        android:id="@+id/spnDiagColorFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvDiagColorFilter"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvDiagImageSize"
+        android:layout_marginLeft="39dp"
+        android:layout_toRightOf="@+id/tvDiagColorFilter"
+        android:entries="@array/color_values"
+        android:spinnerMode="dialog"
+        android:gravity="right" />
+
+    <TextView
+        android:id="@+id/tvDiagImageType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvDiagColorFilter"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/text_image_type" />
+
+    <Spinner
+        android:id="@+id/spnDiagImageFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvDiagImageType"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/spnDiagColorFilter"
+        android:layout_marginLeft="39dp"
+        android:layout_toRightOf="@+id/tvDiagColorFilter"
+        android:entries="@array/image_types"
+        android:spinnerMode="dialog"
+        android:gravity="right" />
+
+    <TextView
+        android:id="@+id/tvDiagSiteFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvDiagImageType"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/lbl_site" />
+
+    <EditText
+        android:id="@+id/etDiagSiteFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvDiagSiteFilter"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/spnDiagColorFilter"
+        android:layout_marginLeft="39dp"
+        android:layout_toRightOf="@+id/tvDiagSiteFilter"
+        ></EditText>
+        
+    <Button
+        android:id="@+id/btnDiagSettingsSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDiagSiteFilter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/btn_settings_save"
+         >
+    </Button>
+    
+    
+
+</RelativeLayout>

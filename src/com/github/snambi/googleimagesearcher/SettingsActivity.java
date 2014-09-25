@@ -65,7 +65,7 @@ public class SettingsActivity extends Activity {
 		}
 	}
 	
-	private void setSelectedItem( String value, Spinner spinner){
+	public static void setSelectedItem( String value, Spinner spinner){
 		if( value != null && !value.trim().equals("") ){
 			for( int i=0; i<spinner.getCount() ; i++ ){
 				String item = (String) spinner.getItemAtPosition(i);
