@@ -138,7 +138,7 @@ public class SearchActivity extends Activity {
     		AndroidUtils.hideSoftKeyboard(this);
     	}
     	
-    	Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+    	//Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
     	
     	imageClient.clear();
     	
