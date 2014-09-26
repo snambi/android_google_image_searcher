@@ -1,12 +1,12 @@
 package com.github.snambi.googleimagesearcher;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
@@ -15,9 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 
-public class SettingsDialog extends DialogFragment implements OnEditorActionListener{
+public class SettingsDialog extends DialogFragment implements OnClickListener{
 	
 	private EditText etSite=null;
 	private Spinner spnColor=null;
@@ -85,7 +84,7 @@ public class SettingsDialog extends DialogFragment implements OnEditorActionList
 		
 		//btnSave.setOnClickListener( new SettingOnClickListener(this));
 		
-		btnSave.setOnEditorActionListener(this);
+		btnSave.setOnClickListener(this);
 		
 		getDialog().getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -93,40 +92,39 @@ public class SettingsDialog extends DialogFragment implements OnEditorActionList
 		return view;
 	}
 	
-	public void finishActivity( View view){
-		String colorFilter = (String) spnColor.getSelectedItem();
-		String imageFilter = (String) spnType.getSelectedItem();
-		String imageSize = (String) spnSize.getSelectedItem();
-		String site = etSite.getText().toString();
-		
-		Intent intent = new Intent();
-		
-		intent.putExtra( SettingsActivity.COLOR, colorFilter);
-		intent.putExtra( SettingsActivity.TYPE, imageFilter);
-		intent.putExtra( SettingsActivity.SIZE, imageSize);
-		intent.putExtra( SettingsActivity.SITE, site);
-		
-//		setResult(Activity.RESULT_OK, intent);
-//		finish();
-
-	}
 	
 	public interface SearchDialogFragmentListener{
 		void onFinishDialog( String color, String type, String size, String site);
 	}
 
-	@Override
-	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		if( EditorInfo.IME_ACTION_DONE == actionId ){
-			SearchDialogFragmentListener listener = (SearchDialogFragmentListener) getActivity();
-			
-			String color = (String) spnColor.getSelectedItem();
-			String type = (String) spnType.getSelectedItem();
-			String size = (String) spnSize.getSelectedItem();
-			String site = etSite.getText().toString();
-
-			listener.onFinishDialog(color, type, size, site);
-		}
-		return false;
+	public void onClick( View view){
+		String color = (String) spnColor.getSelectedItem();
+		String type = (String) spnType.getSelectedItem();
+		String size = (String) spnSize.getSelectedItem();
+		String site = etSite.getText().toString();
+		
+		SearchDialogFragmentListener listener = (SearchDialogFragmentListener) getActivity();
+		listener.onFinishDialog(color, type, size, site);
+		
+		dismiss();
 	}
+	
+	
+//	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//		if( EditorInfo.IME_ACTION_DONE == actionId ){
+//			SearchDialogFragmentListener listener = (SearchDialogFragmentListener) getActivity();
+//			
+//			String color = (String) spnColor.getSelectedItem();
+//			String type = (String) spnType.getSelectedItem();
+//			String size = (String) spnSize.getSelectedItem();
+//			String site = etSite.getText().toString();
+//
+//			listener.onFinishDialog(color, type, size, site);
+//		
+//			this.dismiss();
+//			return true;
+//		}
+//		return false;
+//	}
+
 }
